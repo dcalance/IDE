@@ -1,9 +1,0 @@
-c:\users\user\documents\visual studio 2015\Projects\lab2_midps\lab2_midps\bin\Debug\lab2_midps.exe.config
-c:\users\user\documents\visual studio 2015\Projects\lab2_midps\lab2_midps\obj\Debug\lab2_midps.csprojResolveAssemblyReference.cache
-c:\users\user\documents\visual studio 2015\Projects\lab2_midps\lab2_midps\obj\Debug\lab2_midps.Form1.resources
-c:\users\user\documents\visual studio 2015\Projects\lab2_midps\lab2_midps\obj\Debug\lab2_midps.Properties.Resources.resources
-c:\users\user\documents\visual studio 2015\Projects\lab2_midps\lab2_midps\obj\Debug\lab2_midps.csproj.GenerateResource.Cache
-c:\users\user\documents\visual studio 2015\Projects\lab2_midps\lab2_midps\bin\Debug\lab2_midps.exe
-c:\users\user\documents\visual studio 2015\Projects\lab2_midps\lab2_midps\bin\Debug\lab2_midps.pdb
-c:\users\user\documents\visual studio 2015\Projects\lab2_midps\lab2_midps\obj\Debug\lab2_midps.exe
-c:\users\user\documents\visual studio 2015\Projects\lab2_midps\lab2_midps\obj\Debug\lab2_midps.pdb
