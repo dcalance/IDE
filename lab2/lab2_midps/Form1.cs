@@ -12,80 +12,177 @@ namespace lab2_midps
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
-            initStandardPanel();
         }
-
-        void initStandardPanel()
+        private void standardPanel_Paint(object sender, PaintEventArgs e)
         {
-            List<string> buttonsList = new List<string>()
-            {
-                "%" , "sqrt" , "x^2", "1/x",
-                "ce", "c" , "erase", "/",
-                "7", "8", "9", "*",
-                "4", "5", "6", "-",
-                "1", "2", "3", "+",
-                "+/-", "0", ".", "="
-            };
-            this.Controls.Add(standardPanel);
-            this.Size = new Size(304, 540);
-            int top = this.Top + 185;
-            int left = this.Left;
 
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    string currentButton = buttonsList[0];
-                    buttonsList.RemoveAt(0);
-                    Button button = new Button();
-                    button.Left = left;
-                    button.Top = top;
-                    button.Size = new Size(70, 50);
-                    button.Click += buttonClickStandard;
-                    button.Name = currentButton;
-                    button.Text = currentButton;
-                    standardPanel.Controls.Add(button);
-                    left += button.Width + 2;
-                }
-                top += 50 + 2;
-                left = this.Left;
-            }
+        }
+        private void button12_Click(object sender, EventArgs e)
+        {
+            tablePanel1.Visible = !tablePanel1.Visible;
+            tablePanel2.Visible = !tablePanel2.Visible;
         }
 
-        void buttonClickStandard(object sender, EventArgs e)
+        private void operandClicked(object sender, EventArgs e)
         {
             Control control = (Control)sender;
-            List<string> binaryOp = new List<string>
-            {
-                "/", "*", "+", "-"
-            };
-            List<string> unaryOp = new List<string>
-            {
-                "%", "sqrt", "x^2", "1/x"
-            };
+            richTextBox1.AppendText(control.Text);
         }
 
-        string evalExpress(string input)
+        private void dotPressed(object sender, EventArgs e)
         {
-            string result;
-            List<string> stack = new List<string>();
-            while (input.Length > 0)
-            {
-                if (Char.IsDigit(input[0]))
-                {
-                    string number = input[0].ToString();
-                    input = input.Substring(1);
-                    while (Char.IsDigit(input[0]))
-                    {
-                        number += input[0];
-                        input = input.Substring(1);
-                    }
-                    result += number;
-                }
-            }
+
         }
+        private void CEClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void plusMinusClick(object sender, EventArgs e)
+        {
+
+        }
+        private void openBracketClick(object sender, EventArgs e)
+        {
+
+        }
+        private void closeBracketClick(object sender, EventArgs e)
+        {
+
+        }
+        private void cosMinus1Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MCClick(object sender, EventArgs e)
+        {
+
+        }
+        private void MDownClick(object sender, EventArgs e)
+        {
+
+        }
+        private void operatorClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void eraseClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void CClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void piClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void factorialClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void equalsClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void modClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void expClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void logClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void tenToPowerClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void sqrtClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void tanClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void sqrClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void cosClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void sinClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void exponentialClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void degClick(object sender, EventArgs e)
+        {
+
+        }
+        private void cubeClick(object sender, EventArgs e)
+        {
+
+        }
+        private void dmsClick(object sender, EventArgs e)
+        {
+
+        }
+        private void baseSqrtClick(object sender, EventArgs e)
+        {
+
+        }
+        private void lnClick(object sender, EventArgs e)
+        {
+
+        }
+        private void expClick(object sender, EventArgs e)
+        {
+
+        }
+        private void invertClick(object sender, EventArgs e)
+        {
+
+        }
+        private void tanMinus1Click(object sender, EventArgs e)
+        {
+
+        }
+        private void sinMinus1Click(object sender, EventArgs e)
+        {
+
+        }
+        private void MRClick(object sender, EventArgs e)
+        {
+
+        }
+        private void MPlusClick(object sender, EventArgs e)
+        {
+
+        }
+        private void MMinusClick(object sender, EventArgs e)
+        {
+
+        }
+        private void MSClick(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
