@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using lab2_midps_logic;
+using OxyPlot;
+using OxyPlot.Series;
 
 
 namespace lab2_midps
@@ -22,11 +24,90 @@ namespace lab2_midps
         public Form1()
         {
             InitializeComponent();
-            currentInput.Text = currentInputString;
+            classicPanel.Visible = true;
+            scientificPanel.Visible = false;
+            updateView();
+            optionBox.Items.Add("Classic");
+            optionBox.Items.Add("Scientific");
+            optionBox.Items.Add("Plot");
+            updateMemoryButtons();
+            
+        }
+        private void updateMemoryButtons()
+        {
+            if (!System.IO.File.Exists(@".\sausage.txt"))
+            {
+                button46.Enabled = false;
+                button47.Enabled = false;
+                button48.Enabled = false;
+            }
+            else
+            {
+                button46.Enabled = true;
+                button47.Enabled = true;
+                button48.Enabled = true;
+            }
         }
         private void updateView()
         {
-            currentInput.Text = currentInputString;
+            double nr;
+            if (double.TryParse(currentInputString, out nr) && (Double.IsNaN(nr) || Double.IsInfinity(nr)))
+            {
+                currentInput.Text = "Goddamn it, you broke it";
+                foreach (Control ctrl in scientificPanel.Controls)
+                {
+                    ctrl.Enabled = false;
+                }
+
+                foreach (Control ctrl in classicPanel.Controls)
+                {
+                    ctrl.Enabled = false;
+                }
+                tableLayoutPanel1.Enabled = true;
+                foreach (Control ctrl in tableLayoutPanel1.Controls)
+                {
+                    if (ctrl.Text == "CE" || ctrl.Text == "C")
+                    {
+                        ctrl.Enabled = true;
+                    }
+                    else
+                    {
+                        ctrl.Enabled = false;
+                    }
+                }
+                classicButtons.Enabled = true;
+                foreach (Control ctrl in classicButtons.Controls)
+                {
+                    if (ctrl.Text == "CE" || ctrl.Text == "C")
+                    {
+                        ctrl.Enabled = true;
+                    }
+                    else
+                    {
+                        ctrl.Enabled = false;
+                    }
+                }
+            }
+            else
+            {
+                foreach (Control ctrl in scientificPanel.Controls)
+                {
+                    ctrl.Enabled = true;
+                }
+                foreach (Control ctrl in classicPanel.Controls)
+                {
+                    ctrl.Enabled = true;
+                }
+                foreach (Control ctrl in tableLayoutPanel1.Controls)
+                {
+                    ctrl.Enabled = true;
+                }
+                foreach (Control ctrl in classicButtons.Controls)
+                {
+                    ctrl.Enabled = true;
+                }
+                currentInput.Text = currentInputString;
+            }
             expressionBox.Text = "";
             foreach (var item in expressionList)
             {
@@ -34,10 +115,7 @@ namespace lab2_midps
             }
             inputChanged = true;
         }
-        private void standardPanel_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
         private void button12_Click(object sender, EventArgs e)
         {
             tablePanel1.Visible = !tablePanel1.Visible;
@@ -269,25 +347,77 @@ namespace lab2_midps
         }
         private void MRClick(object sender, EventArgs e)
         {
-
+            currentInputString = System.IO.File.ReadAllText(@".\sausage.txt");
+            updateView();
         }
         private void MPlusClick(object sender, EventArgs e)
         {
-
+            string value = System.IO.File.ReadAllText(@".\sausage.txt");
+            double number = double.Parse(value);
+            string result = (number + double.Parse(currentInputString)).ToString();
+            System.IO.File.WriteAllText(@".\sausage.txt", result);
         }
         private void MMinusClick(object sender, EventArgs e)
         {
-
+            string value = System.IO.File.ReadAllText(@".\sausage.txt");
+            double number = double.Parse(value);
+            string result = (number - double.Parse(currentInputString)).ToString();
+            System.IO.File.WriteAllText(@".\sausage.txt", result);
         }
         private void MSClick(object sender, EventArgs e)
         {
-
+            System.IO.File.WriteAllText(@".\sausage.txt", currentInputString);
+            updateMemoryButtons();
         }
         private void MCClick(object sender, EventArgs e)
         {
-
+            System.IO.File.Delete(@".\sausage.txt");
+            updateMemoryButtons();
         }
         private void MDownClick(object sender, EventArgs e)
+        {
+            //hi there :)
+        }
+
+        private void menu_Click(object sender, EventArgs e)
+        {
+            optionBox.Visible = !optionBox.Visible;
+            
+        }
+
+        private void optionBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            optionBox.Visible = !optionBox.Visible;
+            Control control = (Control)sender;
+            switch (control.Text)
+            {
+                case "Classic":
+                    scientificPanel.Visible = false;
+                    classicPanel.Visible = true;
+                    currentInputString = "0";
+                    expressionList = new List<string>();
+                    updateView();
+                    break;
+                case "Scientific":
+                    classicPanel.Visible = false;
+                    scientificPanel.Visible = true;
+                    currentInputString = "0";
+                    expressionList = new List<string>();
+                    updateView();
+                    break;
+                case "Plot":
+                    GraphWindow window = new GraphWindow();
+                    window.Show();
+                    break;
+            }
+        }
+
+        private void scientificPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void backgroundPanel_paint(object sender, PaintEventArgs e)
         {
 
         }
