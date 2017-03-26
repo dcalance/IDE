@@ -67,7 +67,7 @@ namespace lab2_midps_logic
                 transformedExp.Add(stack[0]);
                 stack.RemoveAt(0);
             }
-            // *, %, /, +, -, ^, root of order, (, ), exp
+            
 
         }
         public static double eval(List<string> input)
@@ -76,6 +76,12 @@ namespace lab2_midps_logic
             List<string> transformedExp = new List<string>();
             List<string> stack = new List<string>();
             generateTransformedExp(ref listExp, ref transformedExp);
+            Console.WriteLine("Postfix Expression : ");
+            foreach (var item in transformedExp)
+            {
+                Console.Write($"{item} ");
+            }
+            Console.WriteLine();
             while (transformedExp.Count > 0)
             {
                 List<string> operators = new List<string>
@@ -215,9 +221,7 @@ namespace lab2_midps_logic
             result += minutes / 100 + seconds / 10000;
             return result;
         }
-
-  
-    private static double factorial(string input)
+        private static double factorial(string input)
         {
             int n;
             int resultInt = 1;
